@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Client = require('../models/clienteModel'); // Importar el modelo de Cliente
-const { createClient, getClients, updateClient, deleteClient } = require('../controllers/clienteController'); // Asegúrate de importar el controlador
+ // Importar el modelo de Cliente
+const { createClient, getClients, updateClient, deleteClient } = require('../controllers/clientController'); // Asegúrate de importar el controlador
 
 // Obtener todos los clientes
 router.get('/', getClients);
