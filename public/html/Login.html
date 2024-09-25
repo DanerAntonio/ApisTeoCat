@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teo/Cat</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.jpeg" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../assets/images/logos/1.png" width="180" alt="" />
+                </a>
+                <form id="loginForm">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailError" class="text-danger"></div>
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <div id="passwordError" class="text-danger"></div>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <a class="text-primary fw-bold" href="CambioContra.html">Olvidaste Tu Contraseña ?</a>
+                  </div>
+                  <button type="submit" id="loginButton" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Ingresar</button>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Nuevo En Teo/Cat?</p>
+                    <a class="text-primary fw-bold ms-2" href="Registro.html">Crear Una Cuenta</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+      const emailInput = document.getElementById('exampleInputEmail1');
+      const passwordInput = document.getElementById('exampleInputPassword1');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let isValid = true;
+
+        // Email/Username validation
+        if (!emailInput.value.trim()) {
+          emailError.textContent = 'Por favor, ingrese su correo electrónico o nombre de usuario.';
+          isValid = false;
+        } else if (emailInput.value.includes('@') && !isValidEmail(emailInput.value)) {
+          emailError.textContent = 'Por favor, ingrese un correo electrónico válido.';
+          isValid = false;
+        } else {
+          emailError.textContent = '';
+        }
+
+        // Password validation
+        if (!passwordInput.value.trim()) {
+          passwordError.textContent = 'Por favor, ingrese su contraseña.';
+          isValid = false;
+        } else if (passwordInput.value.length < 6) {
+          passwordError.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+          isValid = false;
+        } else {
+          passwordError.textContent = '';
+        }
+
+        if (isValid) {
+          // If all validations pass, you can submit the form or perform login action
+          alert('Formulario válido. Procesando inicio de sesión...');
+          // You can add your login logic here
+          // For example: loginForm.submit();
+        }
+      });
+
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+    });
+  </script>
+</body>
+
+</html>

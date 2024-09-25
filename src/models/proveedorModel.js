@@ -1,3 +1,5 @@
+// src/models/Proveedor.js
+
 const mongoose = require('mongoose');
 
 const proveedorSchema = new mongoose.Schema({
@@ -10,7 +12,8 @@ const proveedorSchema = new mongoose.Schema({
     ciudad: { type: String, required: true },
     estado: { type: String, required: true },
     codigo_postal: { type: String, required: true },
-    nit: { type: String, required: true, unique: true }
+    nit: { type: String, required: true },
 });
 
-module.exports = mongoose.model('Proveedor', proveedorSchema);
+const Proveedor = mongoose.model('Proveedor', proveedorSchema);
+module.exports = Proveedor;

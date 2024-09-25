@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teo/Cat</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.jpeg" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../assets/images/logos/1.png" width="180" alt="" />
+                </a>
+                <form id="registrationForm">
+                  <div class="mb-3">
+                    <label for="exampleInputtext1" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
+                    <div id="nombreError" class="text-danger"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputtext2" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="exampleInputtext2" aria-describedby="textHelp">
+                    <div id="apellidoError" class="text-danger"></div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailError" class="text-danger"></div>
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <div id="passwordError" class="text-danger"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword2" class="form-label">Repetir contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2">
+                    <div id="password2Error" class="text-danger"></div>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Iniciar</button>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Ya tienes una cuenta?</p>
+                    <a class="text-primary fw-bold ms-2" href="Login.html">Loguearse</a>
+                  </div>
+                  <!-- Link to open recovery password modal -->
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('registrationForm');
+      const nombre = document.getElementById('exampleInputtext1');
+      const apellido = document.getElementById('exampleInputtext2');
+      const email = document.getElementById('exampleInputEmail1');
+      const password = document.getElementById('exampleInputPassword1');
+      const password2 = document.getElementById('exampleInputPassword2');
+
+      const nombreError = document.getElementById('nombreError');
+      const apellidoError = document.getElementById('apellidoError');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const password2Error = document.getElementById('password2Error');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let isValid = true;
+
+        // Nombre validation
+        if (nombre.value.trim() === '') {
+          nombreError.textContent = 'Por favor, ingrese su nombre.';
+          isValid = false;
+        } else {
+          nombreError.textContent = '';
+        }
+
+        // Apellido validation
+        if (apellido.value.trim() === '') {
+          apellidoError.textContent = 'Por favor, ingrese su apellido.';
+          isValid = false;
+        } else {
+          apellidoError.textContent = '';
+        }
+
+        // Email validation
+        if (email.value.trim() === '') {
+          emailError.textContent = 'Por favor, ingrese su email.';
+          isValid = false;
+        } else if (!isValidEmail(email.value)) {
+          emailError.textContent = 'Por favor, ingrese un email válido.';
+          isValid = false;
+        } else {
+          emailError.textContent = '';
+        }
+
+        // Password validation
+        if (password.value.trim() === '') {
+          passwordError.textContent = 'Por favor, ingrese una contraseña.';
+          isValid = false;
+        } else if (password.value.length < 6) {
+          passwordError.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+          isValid = false;
+        } else {
+          passwordError.textContent = '';
+        }
+
+        // Confirm password validation
+        if (password2.value.trim() === '') {
+          password2Error.textContent = 'Por favor, repita la contraseña.';
+          isValid = false;
+        } else if (password.value !== password2.value) {
+          password2Error.textContent = 'Las contraseñas no coinciden.';
+          isValid = false;
+        } else {
+          password2Error.textContent = '';
+        }
+
+        if (isValid) {
+          alert('Formulario válido. Procesando registro...');
+          // Aquí puedes agregar la lógica para enviar el formulario
+          // form.submit();
+        }
+      });
+
+      function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+    });
+  </script>
+</body>
+
+</html>

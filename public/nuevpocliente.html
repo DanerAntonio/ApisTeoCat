@@ -1,0 +1,22 @@
+<form id="customerForm">
+    <input type="hidden" id="customerId" name="customerId">
+    <input type="text" id="customerName" name="customerName" placeholder="Nombre" required>
+    <input type="email" id="customerEmail" name="customerEmail" placeholder="Correo electrónico" required>
+    <input type="tel" id="customerPhone" name="customerPhone" placeholder="Teléfono" required>
+    <input type="text" id="customerAddress" name="customerAddress" placeholder="Dirección" required>
+    <button type="submit">Guardar</button>
+</form>
+
+<table id="customerTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="customerTableBody"></tbody>
+</table>

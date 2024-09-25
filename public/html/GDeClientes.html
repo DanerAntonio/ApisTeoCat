@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Clientes</title>
+    <link rel="stylesheet" href="style.css"> <!-- Asegúrate de tener un CSS básico -->
+</head>
+<body>
+    <h1>Clientes</h1>
+    <button id="openModalBtn">Registrar Cliente</button>
+    
+    <div id="clientList"></div>
+
+    <!-- Modal -->
+    <div class="modal" id="clientModal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeModalBtn">&times;</span>
+            <h2>Registrar Cliente</h2>
+            <input type="text" id="name" placeholder="Nombre" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phone" placeholder="Teléfono" required>
+            <input type="text" id="address" placeholder="Dirección" required>
+            <button id="saveClientBtn">Guardar Cliente</button>
+        </div>
+    </div>
+
+    <script src="../assets/js/GDeClientes.js"></script>
+    <script src="../api.js"></script> <!-- Asegúrate de tener tu archivo JS -->
+</body>
+</html>

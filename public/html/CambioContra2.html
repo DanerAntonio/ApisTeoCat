@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forgot Password</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.jpeg" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    
+    <!-- Cambiar Contraseña -->
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../assets/images/logos/1.png" width="180" alt="" />
+                </a>
+                <p class="text-center">Cambiar Contraseña</p>
+                <form id="changePasswordForm">
+                  <div class="mb-3">
+                    <label for="newPassword" class="form-label">Ingresa nueva contraseña</label>
+                    <input type="password" class="form-control" id="newPassword" required>
+                    <div id="newPasswordError" class="text-danger"></div>
+                  </div>
+                  <div class="mb-4">
+                    <label for="confirmPassword" class="form-label">Confirma tu nueva contraseña</label>
+                    <input type="password" class="form-control" id="confirmPassword" required>
+                    <div id="confirmPasswordError" class="text-danger"></div>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Cambiar</button>
+                  <button type="button" class="btn btn-secondary w-100 py-8 fs-4 mb-4 rounded-2" id="cancelButton">Cancelar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.getElementById('changePasswordForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const newPassword = document.getElementById('newPassword');
+      const confirmPassword = document.getElementById('confirmPassword');
+      const newPasswordError = document.getElementById('newPasswordError');
+      const confirmPasswordError = document.getElementById('confirmPasswordError');
+      
+      // Reset error messages
+      newPasswordError.textContent = '';
+      confirmPasswordError.textContent = '';
+      
+      let isValid = true;
+
+      // Validate new password
+      if (newPassword.value.length < 8) {
+        newPasswordError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
+        isValid = false;
+      }
+
+      // Validate password confirmation
+      if (newPassword.value !== confirmPassword.value) {
+        confirmPasswordError.textContent = 'Las contraseñas no coinciden.';
+        isValid = false;
+      }
+
+      if (isValid) {
+        // Aquí puedes añadir la lógica para cambiar la contraseña.
+        alert('Contraseña cambiada exitosamente.');
+      }
+    });
+
+    document.getElementById('cancelButton').addEventListener('click', function() {
+      // Limpiar el formulario o redirigir según sea necesario
+      document.getElementById('changePasswordForm').reset();
+      document.getElementById('newPasswordError').textContent = '';
+      document.getElementById('confirmPasswordError').textContent = '';
+    });
+  </script>
+</body>
+
+</html>

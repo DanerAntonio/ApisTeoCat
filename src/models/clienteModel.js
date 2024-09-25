@@ -1,12 +1,20 @@
 const mongoose = require('mongoose');
 
-// Definición del esquema del cliente
 const clientSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  phone: { type: String, required: true },
-  address: { type: String, required: true },
+  name: { type: String, required: true, trim: true },
+  email: { 
+    type: String, 
+    required: true, 
+    unique: true, 
+    trim: true,
+    lowercase: true,
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor, ingrese un email válido']
+  },
+  phone: { type: String, required: true, trim: true },
+  address: { type: String, required: true, trim: true },
 }, { timestamps: true });
 
-// Exportar el modelo del cliente
+// Índice para mejorar la búsqueda por email
+clientSchema.index({ email: 1 });
+
 module.exports = mongoose.model('Client', clientSchema);
